@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.Owin.Hosting;
 using Owin;
 
 namespace KatanaIntro
 {
-    using AppFunc = Func<IDictionary<string,object>,Task> ;
     class Program
     {
         static void Main(string[] args)
@@ -31,8 +31,6 @@ namespace KatanaIntro
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            appBuilder.Use<PrintEnvironmentComponent>();
-
             appBuilder.Use(async (env, next) =>
             {
                 Console.WriteLine("Requesting :" + env.Request.Path);
@@ -42,45 +40,20 @@ namespace KatanaIntro
                 Console.WriteLine("Resonse :" + env.Response.StatusCode);
 
             });
+
+
+            ConfigureWebApi(appBuilder);
             appBuilder.Use<HelloWorldComponent>();
         }
-    }
 
-    public class PrintEnvironmentComponent
-    {
-        private AppFunc _next;
-
-        public PrintEnvironmentComponent(AppFunc next)
+        private void ConfigureWebApi(IAppBuilder app)
         {
-            _next = next;
-        }
-        public async Task Invoke(IDictionary<string, object> environment)
-        {
-            foreach (var keyValue in environment)
-            {
-                Console.WriteLine("Key : {0} - Value : {1}",keyValue.Key,keyValue.Value);
-            }
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute("DefaultApi", 
+                "api/{controller}/{id}", 
+                new { id = RouteParameter.Optional });
 
-            await _next(environment);
-        }
-    }
-
-
-    public class HelloWorldComponent
-    {
-        private AppFunc _next;
-
-        public HelloWorldComponent(AppFunc next)
-        {
-            _next = next;
-        }
-        public Task Invoke(IDictionary<string, object> environment)
-        {
-            var responseStream = environment["owin.ResponseBody"] as Stream;
-            using (var writer = new StreamWriter(responseStream))
-            {
-                return writer.WriteAsync("Hello world from Component");
-            }
+            app.UseWebApi(config);
         }
     }
 }

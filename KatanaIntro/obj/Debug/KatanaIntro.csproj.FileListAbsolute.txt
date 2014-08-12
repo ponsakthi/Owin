@@ -15,3 +15,11 @@ C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\obj\Debug\KatanaIntro.exe
 C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\obj\Debug\KatanaIntro.pdb
 C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\Microsoft.Owin.Diagnostics.dll
 C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\Microsoft.Owin.Diagnostics.xml
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\Newtonsoft.Json.dll
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Net.Http.Formatting.dll
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Web.Http.dll
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Web.Http.Owin.dll
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\Newtonsoft.Json.xml
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Net.Http.Formatting.xml
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Web.Http.xml
+C:\Backup\Learn\GIT\OwinPs\OwinLeanr\KatanaIntro\bin\Debug\System.Web.Http.Owin.xml
