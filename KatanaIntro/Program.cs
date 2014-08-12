@@ -31,10 +31,40 @@ namespace KatanaIntro
     {
         public void Configuration(IAppBuilder appBuilder)
         {
+            appBuilder.Use<PrintEnvironmentComponent>();
 
+            appBuilder.Use(async (env, next) =>
+            {
+                Console.WriteLine("Requesting :" + env.Request.Path);
+
+                await next();
+
+                Console.WriteLine("Resonse :" + env.Response.StatusCode);
+
+            });
             appBuilder.Use<HelloWorldComponent>();
         }
     }
+
+    public class PrintEnvironmentComponent
+    {
+        private AppFunc _next;
+
+        public PrintEnvironmentComponent(AppFunc next)
+        {
+            _next = next;
+        }
+        public async Task Invoke(IDictionary<string, object> environment)
+        {
+            foreach (var keyValue in environment)
+            {
+                Console.WriteLine("Key : {0} - Value : {1}",keyValue.Key,keyValue.Value);
+            }
+
+            await _next(environment);
+        }
+    }
+
 
     public class HelloWorldComponent
     {
